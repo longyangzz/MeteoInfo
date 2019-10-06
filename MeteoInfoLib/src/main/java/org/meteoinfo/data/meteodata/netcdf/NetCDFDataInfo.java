@@ -3422,7 +3422,7 @@ public class NetCDFDataInfo extends DataInfo implements IGridDataInfo, IStationD
         //Define dimensions
         for (Dimension dim : this.dimensions) {
             ncfilew.addDimension(null, dim.getShortName(), dim.getLength(),
-                    dim.isUnlimited(), dim.isVariableLength());
+                    dim.isShared(), dim.isUnlimited(), dim.isVariableLength());
         }
 
         //Define global attributes
@@ -3926,7 +3926,7 @@ public class NetCDFDataInfo extends DataInfo implements IGridDataInfo, IStationD
         //Define dimensions
         for (Dimension dim : aDataInfo.dimensions) {
             ncfile.addDimension(null, dim.getShortName(), dim.getLength(),
-                    dim.isUnlimited(), dim.isVariableLength());
+                    dim.isShared(), dim.isUnlimited(), dim.isVariableLength());
         }
 
         //Define global attributes
@@ -4176,7 +4176,7 @@ public class NetCDFDataInfo extends DataInfo implements IGridDataInfo, IStationD
         //Define dimensions
         for (Dimension dim : aDataInfo.dimensions) {
             ncfilew.addDimension(null, dim.getShortName(), dim.getLength(),
-                    dim.isUnlimited(), dim.isVariableLength());
+                    dim.isShared(), dim.isUnlimited(), dim.isVariableLength());
         }
         ucar.nc2.Dimension tdim = ncfilew.addDimension(null, "time", 1);
 
@@ -4250,7 +4250,7 @@ public class NetCDFDataInfo extends DataInfo implements IGridDataInfo, IStationD
                 ncfilew.write(var, start, NCUtil.convertArray(varaData));
             }
         }
-        ucar.ma2.Array timeValue = new ucar.ma2.ArrayInt.D1(tvalue, false);
+        ucar.ma2.Array timeValue = new ucar.ma2.ArrayInt.D1(tvalue);
         ncfilew.write(tvar, timeValue);
 
         //Close data file

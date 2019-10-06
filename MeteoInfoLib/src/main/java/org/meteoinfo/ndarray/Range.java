@@ -33,7 +33,7 @@
 
 package org.meteoinfo.ndarray;
 
-import javax.annotation.concurrent.Immutable;
+import net.jcip.annotations.Immutable;
 
 import java.util.List;
 import java.util.ArrayList;
