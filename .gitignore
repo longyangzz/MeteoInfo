@@ -1,1 +1,12 @@
 /target/
+MeteoInfoLab/target/
+/MeteoInfoLib/target/
+/MeteoInfoMap/target/
+lib/
+.idea/
+MeteoInfoLab/MeteoInfoLab.iml
+MeteoInfoLab/pom.xml
+MeteoInfoLib/MeteoInfoLib.iml
+MeteoInfoLib/pom.xml
+MeteoInfoMap/MeteoInfoMap.iml
+MeteoInfoMap/pom.xml
