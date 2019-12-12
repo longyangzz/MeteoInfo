@@ -27,6 +27,6 @@ public class NCparse {
 
         Integer lt = readGribToSqlBIZ.inserGribDataToSql();
 
-        return "hello";
+        return "readGribToSql sucess";
     }
 }
