@@ -9,7 +9,7 @@
         <module name="MeteoInfoLab" />
         <module name="MeteoInfoLib" />
         <module name="MeteoInfoMap" />
-        <module name="NetcafForecast" />
+        <module name="NCForecast" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -17,7 +17,13 @@
       <module name="MeteoInfoLab" target="1.8" />
       <module name="MeteoInfoLib" target="1.8" />
       <module name="MeteoInfoMap" target="1.8" />
+      <module name="NCForecast" target="1.8" />
       <module name="NetcafForecast" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="NCForecast" options="-parameters" />
+    </option>
   </component>
 </project>

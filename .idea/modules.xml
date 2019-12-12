@@ -6,7 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/MeteoInfoLab/MeteoInfoLab.iml" filepath="$PROJECT_DIR$/MeteoInfoLab/MeteoInfoLab.iml" />
       <module fileurl="file://$PROJECT_DIR$/MeteoInfoLib/MeteoInfoLib.iml" filepath="$PROJECT_DIR$/MeteoInfoLib/MeteoInfoLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/MeteoInfoMap/MeteoInfoMap.iml" filepath="$PROJECT_DIR$/MeteoInfoMap/MeteoInfoMap.iml" />
-      <module fileurl="file://$PROJECT_DIR$/NetcafForecast/NetcafForecast.iml" filepath="$PROJECT_DIR$/NetcafForecast/NetcafForecast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NetcafForecast/NCForecast.iml" filepath="$PROJECT_DIR$/NetcafForecast/NCForecast.iml" />
     </modules>
   </component>
 </project>
