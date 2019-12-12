@@ -9,6 +9,7 @@
         <module name="MeteoInfoLab" />
         <module name="MeteoInfoLib" />
         <module name="MeteoInfoMap" />
+        <module name="NetcafForecast" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -16,6 +17,7 @@
       <module name="MeteoInfoLab" target="1.8" />
       <module name="MeteoInfoLib" target="1.8" />
       <module name="MeteoInfoMap" target="1.8" />
+      <module name="NetcafForecast" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

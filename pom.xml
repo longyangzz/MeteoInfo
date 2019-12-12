@@ -5,25 +5,26 @@
     <artifactId>MeteoInfo</artifactId>
     <version>2.0.6</version>
     <packaging>pom</packaging>
-    
+
     <parent>
         <groupId>org.sonatype.oss</groupId>
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
-    
+
     <modules>
         <module>MeteoInfoLib</module>
         <module>MeteoInfoMap</module>
         <module>MeteoInfoLab</module>
+        <module>NetcafForecast</module>
     </modules>
-    
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>    
+    </properties>
     <licenses>
         <license>
             <name>GNU Lesser General Public License v3.0</name>
@@ -44,5 +45,5 @@
             <organization>Chinese Academy of Meteorological Sciences</organization>
         </developer>
     </developers>
-    
+
 </project>
