@@ -15,6 +15,7 @@ mybatis:
   mapper-locations: "classpath:mapper/*.xml"
 
 #Spring boot视图配置
+#http://127.0.0.1:8086/NCForecast/NCparse/readGribToSql
 spring.mvc.view:
   prefix: /WEB-INF/jsp/
   suffix: .jsp
