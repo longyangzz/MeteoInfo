@@ -6,6 +6,7 @@ import org.meteoinfo.data.meteodata.MeteoDataInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class NCparse {
     private ReadGribToSqlBIZ readGribToSqlBIZ;
 
     @RequestMapping("readGribToSql")
-    public String readGribToSql(){
+    public @ResponseBody String readGribToSql(){
         String path = "D:\\2019\\Z_NWGD_C_BEHK_20180707060034_P_RFFC_SPCC-EDA10_201807070800_00101.GRB2";
         MeteoDataInfo aDataInfo = new MeteoDataInfo();
         aDataInfo.openNetCDFData(path);
