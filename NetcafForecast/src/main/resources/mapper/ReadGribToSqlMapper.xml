@@ -10,12 +10,10 @@
            ,[StartForecastTime]
            ,[ForecastTime]
            ,[UWind]
-           ,[VWind])
-         VALUES
-               ('2019-12-12 06:00'
-               ,'2019-12-12 08:00'
-               ,'2019-12-12 09:00'
-               ,10.2
-               ,13.0)
+           ,[VWind]
+           ,[Lon]
+           ,[lat]
+           ,[STCD])
+         VALUES  ${stateValues}
     </select>
 </mapper>

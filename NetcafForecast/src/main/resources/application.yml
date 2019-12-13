@@ -21,3 +21,8 @@ spring.mvc.view:
   suffix: .jsp
 
 spring.thymeleaf.prefix: "classpath:/templates/"
+
+
+#自定义数据目录
+custom:
+  forecastData:  "D:\\2019\\ForecastData\\"

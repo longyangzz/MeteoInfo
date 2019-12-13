@@ -147,6 +147,7 @@
     </dependencies>
 
     <build>
+        <finalName>NCForecast</finalName><!-- 此处若无名称,打war包会带版本号 -->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

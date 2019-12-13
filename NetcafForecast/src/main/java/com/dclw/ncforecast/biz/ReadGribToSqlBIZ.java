@@ -13,7 +13,8 @@ public class ReadGribToSqlBIZ {
     private ReadGribToSqlMapper readGribToSqlMapper;
 
 
-    public Integer inserGribDataToSql() {
-        return  readGribToSqlMapper.inserGribDataToSql();
+    public Integer inserGribDataToSql(String values) {
+
+        return  readGribToSqlMapper.inserGribDataToSql(values);
     }
 }
