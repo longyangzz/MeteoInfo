@@ -143,7 +143,7 @@ public class NCparse {
                 String fs = "";
 
                 int xNum = gridDataV.xArray.length;//gridDataV.xArray.length;
-                int yNUm = 10;//gridDataV.yArray.length;
+                int yNUm = gridDataV.yArray.length;
                 int tNum = xNum * yNUm;
 
                 // 遍历维度层
