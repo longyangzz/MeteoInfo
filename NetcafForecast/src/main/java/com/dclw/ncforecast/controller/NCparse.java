@@ -24,6 +24,10 @@ public class NCparse {
     @Value("${custom.forecastData}")
     private String forecastData;
 
+    @Value("${custom.digui}")
+    private String diguiTypeValue;
+
+
     @RequestMapping("readGribToSql")
     public @ResponseBody String readGribToSql(){
         //！ 目录结构示意
@@ -43,7 +47,17 @@ public class NCparse {
         File[] files = new File( forecastData ).listFiles();
         List<String> subPathList = new ArrayList<>();
         //!! 针对目录
-        for ( File file : files ) {
+        //! isDigui;
+        String isDigui = diguiTypeValue;
+        int subfolderNum = 1;
+        if(isDigui.equals("digui"))
+        {
+            subfolderNum = files.length;
+        }
+
+
+        for (int i = 0; i != subfolderNum; ++i  ) {
+            File file = files[i];
             if ( file.isDirectory() ) {
                 subPathList.add( file.getPath() + "\\ShortTerm\\");
             }
