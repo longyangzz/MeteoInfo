@@ -24,7 +24,7 @@ public class NCparse {
     @Value("${custom.forecastData}")
     private String forecastData;
 
-    @Value("${custom.digui}")
+    @Value("${custom.type}")
     private String diguiTypeValue;
 
 

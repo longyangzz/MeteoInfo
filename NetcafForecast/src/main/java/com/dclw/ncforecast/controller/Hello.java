@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("testBean")
-public class TestBean {
-   @RequestMapping("testDemo")
+@RequestMapping("Hello")
+public class Hello {
+   @RequestMapping("index")
     public String TestDemo(){
        return "hello";
    }
