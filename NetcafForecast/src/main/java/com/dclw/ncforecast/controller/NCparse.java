@@ -27,6 +27,10 @@ public class NCparse {
     @Value("${custom.type}")
     private String diguiTypeValue;
 
+    @Value("${custom.xyfblstep}")
+    private int xyfblstep;
+
+
 
     @RequestMapping("readGribToSql")
     public @ResponseBody String readGribToSql(){
@@ -158,12 +162,14 @@ public class NCparse {
 
                 int xNum = gridDataV.xArray.length;//gridDataV.xArray.length;
                 int yNUm = gridDataV.yArray.length;
-                int tNum = xNum * yNUm;
+                int tNum = (xNum / (xyfblstep+1) + 1 ) * (yNUm / (xyfblstep+1) + 1);
 
                 // 遍历维度层
-                for(int row = 0; row != yNUm; ++row)
+                int count = 0;
+                for(int row = 0; row < yNUm; row += xyfblstep)
                 {
-                    for(int i = 0; i != xNum; ++i)
+                    int a = 9;
+                    for(int i = 0; i < xNum; i += xyfblstep)
                     {
                         //! 经纬度索引号按行拍
                         float lon = (float)( gridDataV.xArray[i]);
@@ -173,7 +179,7 @@ public class NCparse {
                         float uValue = (float)( gridDataU.data[row][i]);
                         float vValue = (float)( gridDataV.data[row][i]);
 
-                        if (index == tNum - 1 || ((index+1)%1000 == 0) ) {
+                        if (count == tNum - 1 || ((count+1)%1000 == 0) ) {
                             fs = String.format("('%s', '%s', '%s', %f, %f, %f, %f, %s)", genTime, startForecastTime, forecastTime, uValue, vValue, lon, lat, Integer.toString(index));
                             stateValues += fs;
                             srList.add(stateValues);
@@ -185,7 +191,7 @@ public class NCparse {
                             stateValues += fs;
                         }
 
-
+                        count++;
                     }
                 }
             }
