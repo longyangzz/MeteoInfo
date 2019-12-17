@@ -154,6 +154,7 @@ public class NCparse {
 
                 if(gridDataU.equals(null) || gridDataV.equals(null))
                 {
+                    aDataInfo.close();
                     return  srList;
                 }
 
@@ -194,7 +195,9 @@ public class NCparse {
                         count++;
                     }
                 }
+                aDataInfo.close();
             }
+
             return  srList;
 
         } catch (ParseException e) {
