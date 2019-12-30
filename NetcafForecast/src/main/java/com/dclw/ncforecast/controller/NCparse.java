@@ -189,12 +189,13 @@ public class NCparse {
                 int count = 0;
                 for(int row = 0; row < yNUm; row += xyfblstep)
                 {
-                    int a = 9;
                     for(int i = 0; i < xNum; i += xyfblstep)
                     {
                         //! 经纬度索引号按行拍
                         float lon = (float)( gridDataV.xArray[i]);
-                        float lat = (float)( gridDataV.yArray[i]);
+                        float lat = (float)( gridDataV.yArray[row]);
+                        lon = (float)(Math.round(lon*100))/100;
+                        lat = (float)(Math.round(lat*100))/100;
 
                         int index = xNum * row + i;
                         float uValue = (float)( gridDataU.data[row][i]);
@@ -245,13 +246,13 @@ public class NCparse {
                 int count = 0;
                 for(int row = 0; row < yNUm; row += xyfblstep)
                 {
-                    int a = 9;
                     for(int i = 0; i < xNum; i += xyfblstep)
                     {
                         //! 经纬度索引号按行拍
                         float lon = (float)( gridDataU.xArray[i]);
-                        float lat = (float)( gridDataU.yArray[i]);
-
+                        float lat = (float)( gridDataU.yArray[row]);
+                        lon = (float)(Math.round(lon*100))/100;
+                        lat = (float)(Math.round(lat*100))/100;
                         int index = xNum * row + i;
                         float uValue = (float)( gridDataU.data[row][i]);
 
