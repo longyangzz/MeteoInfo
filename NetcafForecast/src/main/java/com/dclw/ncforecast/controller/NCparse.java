@@ -159,7 +159,7 @@ public class NCparse {
             String forecastTime = dateOutFormat.format(date1);
 
             // ！ EDA10判断数据文件类型
-            if(fileName.endsWith("GRB2") && fileName.contains(dataFeatrue) && dataFeatrue.contains("EDA10"))
+            if(fileName.endsWith("GRB2") && fileName.contains("EDA10") && dataFeatrue.contains("EDA10"))
             {
                 //String path = forecastData + "\\20180707\\ShortTerm\\Z_NWGD_C_BEHK_20180707060054_P_RFFC_SPCC-EDA10_201807070800_00301.GRB2";
                 String path = fileName;
@@ -219,7 +219,7 @@ public class NCparse {
                 aDataInfo.close();
             }
 
-            if(fileName.endsWith("GRB2") && fileName.contains(dataFeatrue) && dataFeatrue.contains("WWD"))
+            if(fileName.endsWith("GRB2") && fileName.contains("WWD") && dataFeatrue.contains("WWD"))
             {
                 //String path = forecastData + "\\20180707\\ShortTerm\\Z_NWGD_C_BEHK_20180707060054_P_RFFC_SPCC-EDA10_201807070800_00301.GRB2";
                 String path = fileName;
