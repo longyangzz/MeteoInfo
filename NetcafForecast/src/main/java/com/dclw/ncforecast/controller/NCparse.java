@@ -194,22 +194,22 @@ public class NCparse {
                         //! 经纬度索引号按行拍
                         float lon = (float)( gridDataV.xArray[i]);
                         float lat = (float)( gridDataV.yArray[row]);
-                        lon = (float)(Math.round(lon*100))/100;
-                        lat = (float)(Math.round(lat*100))/100;
+//                        lon = (float)(Math.round(lon*100))/100;
+//                        lat = (float)(Math.round(lat*100))/100;
 
                         int index = xNum * row + i;
                         float uValue = (float)( gridDataU.data[row][i]);
                         float vValue = (float)( gridDataV.data[row][i]);
 
                         if (count == tNum - 1 || ((count+1)%1000 == 0) ) {
-                            fs = String.format("('%s', '%s', '%s', %f, %f, %f, %f, %s)", genTime, startForecastTime, forecastTime, uValue, vValue, lon, lat, Integer.toString(index));
+                            fs = String.format("('%s', '%s', '%s', %.2f, %.2f, %.2f, %.2f, %s)", genTime, startForecastTime, forecastTime, uValue, vValue, lon, lat, Integer.toString(index));
                             stateValues += fs;
                             srList.add(stateValues);
 
                             //! 清空
                             stateValues = "";
                         } else {
-                            fs = String.format("('%s', '%s', '%s', %f, %f, %f, %f, %s),", genTime, startForecastTime, forecastTime, uValue, vValue, lon, lat, Integer.toString(index));
+                            fs = String.format("('%s', '%s', '%s', %.2f, %.2f, %.2f, %.2f, %s),", genTime, startForecastTime, forecastTime, uValue, vValue, lon, lat, Integer.toString(index));
                             stateValues += fs;
                         }
 
@@ -251,20 +251,20 @@ public class NCparse {
                         //! 经纬度索引号按行拍
                         float lon = (float)( gridDataU.xArray[i]);
                         float lat = (float)( gridDataU.yArray[row]);
-                        lon = (float)(Math.round(lon*100))/100;
-                        lat = (float)(Math.round(lat*100))/100;
+//                        lon = (float)(Math.round(lon*100))/100;
+//                        lat = (float)(Math.round(lat*100))/100;
                         int index = xNum * row + i;
                         float uValue = (float)( gridDataU.data[row][i]);
 
                         if (count == tNum - 1 || ((count+1)%1000 == 0) ) {
-                            fs = String.format("('%s', '%s', '%s', %f, %f, %f, %f, %s)", genTime, startForecastTime, forecastTime, uValue, 0.0, lon, lat, Integer.toString(index));
+                            fs = String.format("('%s', '%s', '%s', %.2f, %.2f, %.2f, %.2f, %s)", genTime, startForecastTime, forecastTime, uValue, 0.0, lon, lat, Integer.toString(index));
                             stateValues += fs;
                             srList.add(stateValues);
 
                             //! 清空
                             stateValues = "";
                         } else {
-                            fs = String.format("('%s', '%s', '%s', %f, %f, %f, %f, %s),", genTime, startForecastTime, forecastTime, uValue, 0.0, lon, lat, Integer.toString(index));
+                            fs = String.format("('%s', '%s', '%s', %.2f, %.2f, %.2f, %.2f, %s),", genTime, startForecastTime, forecastTime, uValue, 0.0, lon, lat, Integer.toString(index));
                             stateValues += fs;
                         }
 
