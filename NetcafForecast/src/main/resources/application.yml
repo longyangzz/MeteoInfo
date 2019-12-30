@@ -28,5 +28,5 @@ spring.thymeleaf.prefix: "classpath:/templates/"
 custom:
   forecastData: "D:\\2019\\ForecastData\\"
   type: "digui1"
-  xyfblstep: 10
+  xyfblstep: 1
   data-featrue: "WWD-EDA10"
