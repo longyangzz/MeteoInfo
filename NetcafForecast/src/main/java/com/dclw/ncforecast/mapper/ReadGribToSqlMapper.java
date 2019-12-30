@@ -8,5 +8,8 @@ import java.util.List;
 public interface ReadGribToSqlMapper extends Mapper<Boolean> {
     //! 调用sql写出数据
     Integer inserGribDataToSql(@Param(value="stateValues")String values);
+
+    Integer inserWWDGribDataToSql(@Param(value="stateValues")String values);
+
 }
 

@@ -16,4 +16,18 @@
            ,[STCD])
          VALUES  ${stateValues}
     </select>
+
+    <select id="inserWWDGribDataToSql" resultType="Integer">
+       INSERT INTO [dbo].[Netcdf_WWD]
+           ([GenTime]
+           ,[StartForecastTime]
+           ,[ForecastTime]
+           ,[UWind]
+           ,[VWind]
+           ,[Lon]
+           ,[lat]
+           ,[STCD])
+         VALUES  ${stateValues}
+    </select>
+
 </mapper>

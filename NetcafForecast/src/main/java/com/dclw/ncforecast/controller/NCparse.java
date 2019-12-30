@@ -30,6 +30,10 @@ public class NCparse {
     @Value("${custom.xyfblstep}")
     private int xyfblstep;
 
+    @Value("${custom.data-featrue}")
+    private String dataFeatrue;
+
+
 
 
     @RequestMapping("readGribToSql")
@@ -50,6 +54,12 @@ public class NCparse {
 
         File[] files = new File( forecastData ).listFiles();
         List<String> subPathList = new ArrayList<>();
+        if(files == null)
+        {
+            log += "根目录下不存在子目录" + "\r\n";
+            return log;
+        }
+
         //!! 针对目录
         //! isDigui;
         String isDigui = diguiTypeValue;
@@ -91,7 +101,17 @@ public class NCparse {
                         {
                             continue;
                         }
-                        Integer lt = readGribToSqlBIZ.inserGribDataToSql(cunRecoord);
+
+                        if( dataFeatrue.contains("EDA10"))
+                        {
+                            Integer lt = readGribToSqlBIZ.inserGribDataToSql(cunRecoord);
+                        }
+
+                        if( dataFeatrue.contains("WWD"))
+                        {
+                            Integer lt = readGribToSqlBIZ.inserWWDGribDataToSql(cunRecoord);
+                        }
+
                         log +=  gribFile.getPath() + "中的数据插入成功" + "\r\n";
                     }
 
@@ -138,8 +158,8 @@ public class NCparse {
             date1 = rightNow.getTime();
             String forecastTime = dateOutFormat.format(date1);
 
-            // ！ 判断数据文件类型
-            if(fileName.endsWith("GRB2") && fileName.contains("EDA10"))
+            // ！ EDA10判断数据文件类型
+            if(fileName.endsWith("GRB2") && fileName.contains(dataFeatrue) && dataFeatrue.contains("EDA10"))
             {
                 //String path = forecastData + "\\20180707\\ShortTerm\\Z_NWGD_C_BEHK_20180707060054_P_RFFC_SPCC-EDA10_201807070800_00301.GRB2";
                 String path = fileName;
@@ -197,6 +217,62 @@ public class NCparse {
                 }
                 aDataInfo.close();
             }
+
+            if(fileName.endsWith("GRB2") && fileName.contains(dataFeatrue) && dataFeatrue.contains("WWD"))
+            {
+                //String path = forecastData + "\\20180707\\ShortTerm\\Z_NWGD_C_BEHK_20180707060054_P_RFFC_SPCC-EDA10_201807070800_00301.GRB2";
+                String path = fileName;
+                MeteoDataInfo aDataInfo = new MeteoDataInfo();
+                aDataInfo.openNetCDFData(path);
+
+                String uName = "u-component_of_wind_altitude_above_msl";
+                GridData gridDataU = aDataInfo.getGridData(uName);
+
+                if(gridDataU.equals(null))
+                {
+                    aDataInfo.close();
+                    return  srList;
+                }
+
+                //! 最后一条记录和其它记录有末尾是否加逗号的区别
+                String fs = "";
+
+                int xNum = gridDataU.xArray.length;//gridDataV.xArray.length;
+                int yNUm = gridDataU.yArray.length;
+                int tNum = (xNum / (xyfblstep+1) + 1 ) * (yNUm / (xyfblstep+1) + 1);
+
+                // 遍历维度层
+                int count = 0;
+                for(int row = 0; row < yNUm; row += xyfblstep)
+                {
+                    int a = 9;
+                    for(int i = 0; i < xNum; i += xyfblstep)
+                    {
+                        //! 经纬度索引号按行拍
+                        float lon = (float)( gridDataU.xArray[i]);
+                        float lat = (float)( gridDataU.yArray[i]);
+
+                        int index = xNum * row + i;
+                        float uValue = (float)( gridDataU.data[row][i]);
+
+                        if (count == tNum - 1 || ((count+1)%1000 == 0) ) {
+                            fs = String.format("('%s', '%s', '%s', %f, %f, %f, %f, %s)", genTime, startForecastTime, forecastTime, uValue, 0.0, lon, lat, Integer.toString(index));
+                            stateValues += fs;
+                            srList.add(stateValues);
+
+                            //! 清空
+                            stateValues = "";
+                        } else {
+                            fs = String.format("('%s', '%s', '%s', %f, %f, %f, %f, %s),", genTime, startForecastTime, forecastTime, uValue, 0.0, lon, lat, Integer.toString(index));
+                            stateValues += fs;
+                        }
+
+                        count++;
+                    }
+                }
+                aDataInfo.close();
+            }
+
 
             return  srList;
 

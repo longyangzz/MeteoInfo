@@ -24,7 +24,9 @@ spring.thymeleaf.prefix: "classpath:/templates/"
 
 
 #自定义数据目录
+#data-featrue 要解析的数据文件命中的预报要素
 custom:
-  forecastData:  "Z:\\ForecastData\\"
+  forecastData: "D:\\2019\\ForecastData\\"
   type: "digui1"
   xyfblstep: 10
+  data-featrue: "WWD"

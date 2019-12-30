@@ -17,4 +17,10 @@ public class ReadGribToSqlBIZ {
 
         return  readGribToSqlMapper.inserGribDataToSql(values);
     }
+
+    public Integer inserWWDGribDataToSql(String values) {
+
+        return  readGribToSqlMapper.inserWWDGribDataToSql(values);
+    }
+
 }
