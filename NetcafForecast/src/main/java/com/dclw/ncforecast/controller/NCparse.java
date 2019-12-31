@@ -102,12 +102,12 @@ public class NCparse {
                             continue;
                         }
 
-                        if( dataFeatrue.contains("EDA10"))
+                        if( gribFile.getPath().contains("EDA10") && dataFeatrue.contains("EDA10"))
                         {
                             Integer lt = readGribToSqlBIZ.inserGribDataToSql(cunRecoord);
                         }
 
-                        if( dataFeatrue.contains("WWD"))
+                        if(gribFile.getPath().contains("WWD") && dataFeatrue.contains("WWD"))
                         {
                             Integer lt = readGribToSqlBIZ.inserWWDGribDataToSql(cunRecoord);
                         }
