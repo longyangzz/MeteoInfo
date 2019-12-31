@@ -290,6 +290,13 @@ public class NCparse {
                         float lat = (float)( gridDataU.yArray[row]);
 //                        lon = (float)(Math.round(lon*100))/100;
 //                        lat = (float)(Math.round(lat*100))/100;
+                        //! 判断点是否在删选范围内，不在则continue
+                        Point2D point = new Point2D(lon, lat);
+                        boolean isIN = Core.IsPtInPoly(point, boundArr);
+                        if (!isIN) {
+                            continue;
+                        }
+
                         int index = xNum * row + i;
                         float uValue = (float)( gridDataU.data[row][i]);
 
