@@ -34,7 +34,12 @@ public class NCparse {
     private String dataFeatrue;
 
 
-
+    public static String getTimeStr2(){
+        Date date = new Date();
+        SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
+        String timeStr2 = sf.format(date);
+        return timeStr2;
+    }
 
     @RequestMapping("readGribToSql")
     public @ResponseBody String readGribToSql(){
@@ -63,13 +68,19 @@ public class NCparse {
         //!! 针对目录
         //! isDigui;
         String isDigui = diguiTypeValue;
-        int subfolderNum = 1;
-        if(isDigui.equals("digui"))
+        int subfolderNum = 0;
+        if(isDigui.equals("history"))
         {
-            subfolderNum = files.length;
+
+        }else if(isDigui.equals("realtime"))
+        {
+            //！ 自定义文件夹目录
+            files = null;
+            files = new File [1];
+            files[0] = new File(forecastData + "\\" + getTimeStr2());
         }
 
-
+        subfolderNum = files.length;
         for (int i = 0; i != subfolderNum; ++i  ) {
             File file = files[i];
             if ( file.isDirectory() ) {
@@ -78,6 +89,11 @@ public class NCparse {
         }
 
         //! 对subPathList目录下的ShortTerm目录下的所有文件进行解析入库处理
+        if(subPathList.size() == 0)
+        {
+            log += "子目录为空" + "\r\n";
+        }
+
         //! 遍历subPathList下的所有grib文件
         for ( String gribFolder : subPathList ) {
             File[] gribFiles = new File( gribFolder ).listFiles();
