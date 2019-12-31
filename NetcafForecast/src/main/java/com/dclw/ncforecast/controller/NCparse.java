@@ -60,7 +60,8 @@ public class NCparse {
 
 
         List<File> files = Arrays.asList(new File( forecastData ).listFiles() );
-        Collections.sort(files, new Comparator<File>(){
+        List arrfilesList = new ArrayList(files);
+        Collections.sort(arrfilesList, new Comparator<File>(){
             @Override
             public int compare(File o1, File o2) {
                 if(o1.isDirectory() && o2.isFile())
@@ -73,7 +74,7 @@ public class NCparse {
 
 
         List<String> subPathList = new ArrayList<>();
-        if(files == null)
+        if(arrfilesList == null)
         {
             log += "根目录下不存在子目录" + "\r\n";
             return log;
@@ -89,14 +90,13 @@ public class NCparse {
         }else if(isDigui.equals("realtime"))
         {
             //！ 自定义文件夹目录
-            files = null;
-            files.clear();
-            files.add(new File(forecastData + "\\" + Core.getTimeStr2()));
+            arrfilesList.clear();
+            arrfilesList.add(new File(forecastData + "\\" + Core.getTimeStr2()));
         }
 
-        subfolderNum = files.size();
+        subfolderNum = arrfilesList.size();
         for (int i = 0; i != subfolderNum; ++i  ) {
-            File file = files.get(i);
+            File file = (File)arrfilesList.get(i);
             if ( file.isDirectory() ) {
                 subPathList.add( file.getPath() + "\\ShortTerm\\");
             }

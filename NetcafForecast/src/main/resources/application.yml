@@ -31,7 +31,7 @@ spring.thymeleaf.prefix: "classpath:/templates/"
 # bound 筛选区域，数组列表，支持多个点，必须是按顺序的点
 custom:
   forecastData: "D:\\2019\\ForecastData\\"
-  type: "history"
+  type: "realtime"
   xyfblstep: 1
   data-featrue: "WWD-EDA10"
   bound: "109.00,16.5;112.4,16.5;112.4,20;109.00,20"
