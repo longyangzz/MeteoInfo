@@ -58,7 +58,20 @@ public class NCparse {
         //! 获取下边的目录
         String log = "readGribToSql start" + "\r\n";
 
-        File[] files = new File( forecastData ).listFiles();
+
+        List<File> files = Arrays.asList(new File( forecastData ).listFiles() );
+        Collections.sort(files, new Comparator<File>(){
+            @Override
+            public int compare(File o1, File o2) {
+                if(o1.isDirectory() && o2.isFile())
+                    return -1;
+                if(o1.isFile() && o2.isDirectory())
+                    return 1;
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+
+
         List<String> subPathList = new ArrayList<>();
         if(files == null)
         {
@@ -77,13 +90,13 @@ public class NCparse {
         {
             //！ 自定义文件夹目录
             files = null;
-            files = new File [1];
-            files[0] = new File(forecastData + "\\" + Core.getTimeStr2());
+            files.clear();
+            files.add(new File(forecastData + "\\" + Core.getTimeStr2()));
         }
 
-        subfolderNum = files.length;
+        subfolderNum = files.size();
         for (int i = 0; i != subfolderNum; ++i  ) {
-            File file = files[i];
+            File file = files.get(i);
             if ( file.isDirectory() ) {
                 subPathList.add( file.getPath() + "\\ShortTerm\\");
             }
