@@ -28,8 +28,10 @@ spring.thymeleaf.prefix: "classpath:/templates/"
 #type： realtime:取当天时间组装的文件夹目录，仅仅当天； | history:遍历读取历史数据，递归每一个
 #xyfblstep： i++xyfblstep 即代表步长
 #data-featrue 要解析的数据文件命中的预报要素，可以通过-连接 如：WWD-EDA10
+# bound 筛选区域，数组列表，支持多个点，必须是按顺序的点
 custom:
   forecastData: "D:\\2019\\ForecastData\\"
   type: "realtime"
   xyfblstep: 1
   data-featrue: "WWD-EDA10"
+  bound: "109.00,16.5;112.4,16.5;112.4,20;109.00,20"

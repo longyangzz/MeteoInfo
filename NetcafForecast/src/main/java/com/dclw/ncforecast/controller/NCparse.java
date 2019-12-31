@@ -1,6 +1,8 @@
 package com.dclw.ncforecast.controller;
 
 import com.dclw.ncforecast.biz.ReadGribToSqlBIZ;
+import com.dclw.ncforecast.common.Core;
+import javafx.geometry.Point2D;
 import org.meteoinfo.data.GridData;
 import org.meteoinfo.data.meteodata.MeteoDataInfo;
 import org.python.apache.xerces.xs.StringList;
@@ -33,13 +35,12 @@ public class NCparse {
     @Value("${custom.data-featrue}")
     private String dataFeatrue;
 
+    @Value("${custom.bound}")
+    private String customBound;
 
-    public static String getTimeStr2(){
-        Date date = new Date();
-        SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
-        String timeStr2 = sf.format(date);
-        return timeStr2;
-    }
+
+    private List<Point2D> boundArr ;
+
 
     @RequestMapping("readGribToSql")
     public @ResponseBody String readGribToSql(){
@@ -77,7 +78,7 @@ public class NCparse {
             //！ 自定义文件夹目录
             files = null;
             files = new File [1];
-            files[0] = new File(forecastData + "\\" + getTimeStr2());
+            files[0] = new File(forecastData + "\\" + Core.getTimeStr2());
         }
 
         subfolderNum = files.length;
@@ -92,6 +93,19 @@ public class NCparse {
         if(subPathList.size() == 0)
         {
             log += "子目录为空" + "\r\n";
+        }
+
+        //! 解析为boundArr赋值
+        int boundLength = customBound.split(";").length;
+        boundArr = new ArrayList<Point2D>();
+        for(int i = 0; i < boundLength; ++i)
+        {
+            String [] curPos = customBound.split(";")[i].split(",");
+            if(curPos.length != 2)
+            {
+                continue;
+            }
+            boundArr.add(new Point2D(Double.parseDouble(curPos[0]), Double.parseDouble(curPos[1])) );
         }
 
         //! 遍历subPathList下的所有grib文件
@@ -212,6 +226,13 @@ public class NCparse {
                         float lat = (float)( gridDataV.yArray[row]);
 //                        lon = (float)(Math.round(lon*100))/100;
 //                        lat = (float)(Math.round(lat*100))/100;
+
+                        //! 判断点是否在删选范围内，不在则continue
+                        Point2D point = new Point2D(lon, lat);
+                        boolean isIN = Core.IsPtInPoly(point, boundArr);
+                        if (!isIN) {
+                            continue;
+                        }
 
                         int index = xNum * row + i;
                         float uValue = (float)( gridDataU.data[row][i]);
