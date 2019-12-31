@@ -29,9 +29,11 @@ spring.thymeleaf.prefix: "classpath:/templates/"
 #xyfblstep： i++xyfblstep 即代表步长
 #data-featrue 要解析的数据文件命中的预报要素，可以通过-连接 如：WWD-EDA10
 # bound 筛选区域，数组列表，支持多个点，必须是按顺序的点
+# points 按指定的点，获取数值信息；如果points不是空，则忽略bound，分辨率xyfblstep值，如果point为空，则按bound解析
 custom:
   forecastData: "D:\\2019\\ForecastData\\"
   type: "realtime"
   xyfblstep: 1
   data-featrue: "WWD-EDA10"
   bound: "109.00,16.5;112.4,16.5;112.4,20;109.00,20"
+  points: "111.2,19.2;111.47,17.07;112.33,16.83;109.14,19.8"
