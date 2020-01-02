@@ -29,6 +29,9 @@ public class NCparse {
     @Value("${custom.type}")
     private String diguiTypeValue;
 
+    @Value("${custom.start-folder}")
+    private String startfolder;
+
     @Value("${custom.xyfblstep}")
     private int xyfblstep;
 
@@ -42,6 +45,8 @@ public class NCparse {
     @Value("${custom.points}")
     private String customPoints;
     private List<Point2D> customPointsArr ;
+
+
 
 
     @RequestMapping("readGribToSql")
@@ -87,6 +92,7 @@ public class NCparse {
         int subfolderNum = 0;
         if(isDigui.equals("history"))
         {
+            //! 删选出来大于指定目录下时间的目录
 
         }else if(isDigui.equals("realtime"))
         {
@@ -97,8 +103,15 @@ public class NCparse {
 
         subfolderNum = arrfilesList.size();
         for (int i = 0; i != subfolderNum; ++i  ) {
+
+
             File file = (File)arrfilesList.get(i);
             if ( file.isDirectory() ) {
+                //！ 如果是history，判断当前目录时间是否大于start值
+                if(Double.valueOf(file.getName()) <= Double.valueOf(startfolder) )
+                {
+                    continue;
+                }
                 subPathList.add( file.getPath() + "\\ShortTerm\\");
             }
         }
@@ -139,6 +152,11 @@ public class NCparse {
         //！ 按bound解析还是按points解析
         for ( String gribFolder : subPathList ) {
             File[] gribFiles = new File( gribFolder ).listFiles();
+
+            if(gribFiles == null)
+            {
+                continue;
+            }
 
             for ( File gribFile : gribFiles ) {
                 if ( !gribFile.isDirectory() ) {
