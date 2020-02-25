@@ -1,11 +1,11 @@
 /* Copyright 2012 Yaqiang Wang,
  * yaqiang.wang@gmail.com
- * 
+ *
  * This library is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation; either version 2.1 of the License, or (at
  * your option) any later version.
- * 
+ *
  * This library is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser
@@ -537,7 +537,7 @@ public class VectorLayer extends MapLayer {
         }
         _chartSet.setDrawCharts(true);
     }
-    
+
     /**
      * Update chart set with minimum and maximum values
      */
@@ -1473,14 +1473,14 @@ public class VectorLayer extends MapLayer {
      */
     @Override
     public void saveFile(String shpfilepath) {
-        this.setFileName(shpfilepath);       
+        this.setFileName(shpfilepath);
         try {
             ShapeFileManage.saveShapeFile(shpfilepath, this);
         } catch (IOException ex) {
             Logger.getLogger(VectorLayer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
      * Save layer as a shape file
      *
@@ -1488,7 +1488,7 @@ public class VectorLayer extends MapLayer {
      * @param encoding Encoding
      */
     public void saveFile(String shpfilepath, String encoding) {
-        this.setFileName(shpfilepath);       
+        this.setFileName(shpfilepath);
         try {
             ShapeFileManage.saveShapeFile(shpfilepath, this, encoding);
         } catch (IOException ex) {
@@ -1852,7 +1852,7 @@ public class VectorLayer extends MapLayer {
                 }
             }
         }
-        
+
         newLayer.getAttributeTable().setTable(aTable);
         newLayer.setLegendScheme((LegendScheme) this.getLegendScheme().clone());
         newLayer.setTransparency(this.getTransparency());
@@ -1921,7 +1921,7 @@ public class VectorLayer extends MapLayer {
                 }
             }
         }
-        
+
         newLayer.getAttributeTable().setTable(aTable);
         for (int i = 0; i < clipPolys.size(); i++) {
             Shape bShape = clipPolys.get(i);
@@ -1952,7 +1952,7 @@ public class VectorLayer extends MapLayer {
                 }
             }
         }
-                
+
         newLayer.setLegendScheme((LegendScheme) this.getLegendScheme().clone());
         newLayer.setTransparency(this.getTransparency());
 
@@ -1960,7 +1960,7 @@ public class VectorLayer extends MapLayer {
     }
     // </editor-fold>
 
-    // <editor-fold desc="Labels">   
+    // <editor-fold desc="Labels">
     /**
      * Add label point
      *
@@ -2337,7 +2337,7 @@ public class VectorLayer extends MapLayer {
                 str = "#pgn" + String.valueOf(styleNum);
                 handler.characters(str.toCharArray(), 0, str.length());
                 handler.endElement("", "", "styleUrl");    //styleUrl
-                handler.endElement("", "", "Pair");    //Pair   
+                handler.endElement("", "", "Pair");    //Pair
 
                 handler.startElement("", "", "Pair", atts);
                 handler.startElement("", "", "key", atts);
@@ -2348,7 +2348,7 @@ public class VectorLayer extends MapLayer {
                 str = "#pgn";
                 handler.characters(str.toCharArray(), 0, str.length());
                 handler.endElement("", "", "styleUrl");    //styleUrl
-                handler.endElement("", "", "Pair");    //Pair  
+                handler.endElement("", "", "Pair");    //Pair
                 handler.endElement("", "", "StyleMap");    //StyleMap
 
                 //Normal style
@@ -2458,6 +2458,7 @@ public class VectorLayer extends MapLayer {
                     handler.endElement("", "", "outerBoundaryIs");    //outerBoundaryIs
 
                     // If Fill=true then add innerBoundaryIs for the contour 'holes'
+                    System.out.println(levelNum);
                     if (((PolygonBreak) this.getLegendScheme().getLegendBreaks().get(levelNum)).isDrawFill()) {
                         if (polygon.hasHole()) {
                             for (List<? extends PointD> hole : polygon.getHoleLines()) {
@@ -2545,7 +2546,7 @@ public class VectorLayer extends MapLayer {
                 str = "#pgn" + String.valueOf(styleNum);
                 handler.characters(str.toCharArray(), 0, str.length());
                 handler.endElement("", "", "styleUrl");    //styleUrl
-                handler.endElement("", "", "Pair");    //Pair   
+                handler.endElement("", "", "Pair");    //Pair
 
                 handler.startElement("", "", "Pair", atts);
                 handler.startElement("", "", "key", atts);
@@ -2556,7 +2557,7 @@ public class VectorLayer extends MapLayer {
                 str = "#pgn";
                 handler.characters(str.toCharArray(), 0, str.length());
                 handler.endElement("", "", "styleUrl");    //styleUrl
-                handler.endElement("", "", "Pair");    //Pair  
+                handler.endElement("", "", "Pair");    //Pair
                 handler.endElement("", "", "StyleMap");    //StyleMap
 
                 //Normal style
@@ -2569,7 +2570,7 @@ public class VectorLayer extends MapLayer {
                 str = ColorUtil.toKMLColor(pgb.getColor());
                 handler.characters(str.toCharArray(), 0, str.length());
                 handler.endElement("", "", "color");    //color
-                handler.endElement("", "", "LineStyle");    //LineStyle                
+                handler.endElement("", "", "LineStyle");    //LineStyle
                 handler.endElement("", "", "Style");    //Style
 
                 styleNum += 1;
@@ -2584,7 +2585,7 @@ public class VectorLayer extends MapLayer {
             str = "00000000";
             handler.characters(str.toCharArray(), 0, str.length());
             handler.endElement("", "", "color");    //color
-            handler.endElement("", "", "LineStyle");    //LineStyle            
+            handler.endElement("", "", "LineStyle");    //LineStyle
             handler.endElement("", "", "Style");    //Style
 
             //Write shape coordinates
@@ -2634,7 +2635,7 @@ public class VectorLayer extends MapLayer {
                         handler.characters(str.toCharArray(), 0, str.length());
                         i += 1;
                     }
-                    handler.endElement("", "", "coordinates");    //coordinates                    
+                    handler.endElement("", "", "coordinates");    //coordinates
                     handler.endElement("", "", "LineString");    //LineString
                     handler.endElement("", "", "Placemark");    //Placemark
                 }
@@ -2704,7 +2705,7 @@ public class VectorLayer extends MapLayer {
                 str = "#pgn" + String.valueOf(styleNum);
                 handler.characters(str.toCharArray(), 0, str.length());
                 handler.endElement("", "", "styleUrl");    //styleUrl
-                handler.endElement("", "", "Pair");    //Pair   
+                handler.endElement("", "", "Pair");    //Pair
 
                 handler.startElement("", "", "Pair", atts);
                 handler.startElement("", "", "key", atts);
@@ -2715,7 +2716,7 @@ public class VectorLayer extends MapLayer {
                 str = "#pgn";
                 handler.characters(str.toCharArray(), 0, str.length());
                 handler.endElement("", "", "styleUrl");    //styleUrl
-                handler.endElement("", "", "Pair");    //Pair  
+                handler.endElement("", "", "Pair");    //Pair
                 handler.endElement("", "", "StyleMap");    //StyleMap
 
                 //Normal style
@@ -2728,7 +2729,7 @@ public class VectorLayer extends MapLayer {
                 str = ColorUtil.toKMLColor(pgb.getColor());
                 handler.characters(str.toCharArray(), 0, str.length());
                 handler.endElement("", "", "bgColor");    //color
-                handler.endElement("", "", "BalloonStyle");    //BalloonStyle                
+                handler.endElement("", "", "BalloonStyle");    //BalloonStyle
                 handler.endElement("", "", "Style");    //Style
 
                 styleNum += 1;
@@ -2743,7 +2744,7 @@ public class VectorLayer extends MapLayer {
             str = "00000000";
             handler.characters(str.toCharArray(), 0, str.length());
             handler.endElement("", "", "color");    //color
-            handler.endElement("", "", "BalloonStyle");    //BalloonStyle            
+            handler.endElement("", "", "BalloonStyle");    //BalloonStyle
             handler.endElement("", "", "Style");    //Style
 
             //Write shape coordinates
@@ -2792,7 +2793,7 @@ public class VectorLayer extends MapLayer {
                     str = str + "," + String.valueOf(((PointZShape) shp).getZ());
                 }
                 handler.characters(str.toCharArray(), 0, str.length());
-                handler.endElement("", "", "coordinates");    //coordinates                    
+                handler.endElement("", "", "coordinates");    //coordinates
                 handler.endElement("", "", "Point");    //Point
                 handler.endElement("", "", "Placemark");    //Placemark
             }
@@ -3101,7 +3102,7 @@ public class VectorLayer extends MapLayer {
         //aLayer.setHandle(this.getHandle());
         aLayer.setLayerName(this.getLayerName());
         aLayer.setProjInfo(this.getProjInfo());
-        //aLayer.setLegendScheme((LegendScheme) this.getLegendScheme().clone());        
+        //aLayer.setLegendScheme((LegendScheme) this.getLegendScheme().clone());
         //aLayer.setTransparency(this.getTransparency());
         aLayer.setLayerDrawType(this.getLayerDrawType());
         aLayer.setVisible(this.isVisible());
